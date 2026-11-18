@@ -3,53 +3,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  GraduationCap,
-  Sparkles,
-  Code2,
-  BrainCircuit,
-  BarChart3,
-  Briefcase,
-  Layers,
   ArrowRight,
-  FileText,
   Download,
-  Eye,
-  CheckCircle,
+  Terminal,
+  MapPin,
+  Sparkles,
 } from 'lucide-react';
 import { SectionHeading } from '@/app/components';
 import { profileData } from '@/app/data/profile';
 import { fadeInUp, staggerContainer } from '@/app/lib/animation';
-
-const focusAreas = [
-  {
-    icon: <Code2 className="w-5 h-5 text-purple-400" />,
-    title: 'Full-Stack Engineering',
-    description:
-      'Engineering performant web applications and services using Python, JavaScript, TypeScript, Next.js, and FastAPI with clean, maintainable architecture.',
-    tags: ['React.js', 'FastAPI', 'Next.js', 'TypeScript', 'SQL'],
-  },
-  {
-    icon: <BrainCircuit className="w-5 h-5 text-indigo-400" />,
-    title: 'Machine Learning & AI',
-    description:
-      'Hands-on training and deployment of gesture recognition pipelines and real-time computer vision (MediaPipe skeletal tracking) for accessibility.',
-    tags: ['MediaPipe', 'Scikit-learn', 'Predictive Modeling', 'Inference Optimization'],
-  },
-  {
-    icon: <BarChart3 className="w-5 h-5 text-violet-400" />,
-    title: 'Data Analytics & Visualization',
-    description:
-      'Transforming complex datasets into actionable insights using Excel, Power BI, Tableau, Pandas, and structured SQL database models.',
-    tags: ['Power BI', 'Tableau', 'Excel', 'Pandas', 'SQL'],
-  },
-  {
-    icon: <Briefcase className="w-5 h-5 text-purple-300" />,
-    title: '1M1B Virtual Internship',
-    description:
-      'Active participant in the 1M1B Data Analysis & AI/ML program (integrated with Microsoft, supported by Govt. of Karnataka & MeitY Startup Hub) solving sustainability challenges.',
-    tags: ['SustainAI', 'Strategic Scaling', 'Data Modeling', 'Impact Metrics'],
-  },
-];
 
 const stats = [
   {
@@ -59,11 +21,11 @@ const stats = [
   },
   {
     label: 'Higher Education',
-    value: 'MCA \'27',
+    value: "MCA '27",
     subtext: 'PES University, Bangalore',
   },
   {
-    label: 'Key Projects Built',
+    label: 'Projects Engineered',
     value: '3+ Systems',
     subtext: 'SignFlow, BuildHer, Debt Risk',
   },
@@ -76,128 +38,90 @@ const stats = [
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-24 border-t border-purple-500/10 relative">
+    <section id="about" className="py-20 border-t border-purple-500/10 relative">
       {/* Ambient background glow */}
       <div className="absolute top-1/3 left-10 w-[420px] h-[420px] bg-purple-900/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           badge="About Me"
-          title="Passionate Software Developer & Data Analytics Enthusiast"
-          subtitle="MCA student at PES University engineering accessible full-stack applications, machine learning models, and insightful data analytics solutions."
+          title="Turning Ideas into Scalable Systems & Insights"
+          subtitle="MCA student at PES University engineering accessible web applications, machine learning models, and insightful data analytics solutions."
           centered={true}
         />
 
-        {/* Narrative & Focus Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
-          {/* Left Column: Personal Narrative */}
+        {/* 2-Column Clean Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-14">
+          {/* Left Column: Focused Personal Narrative */}
           <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="lg:col-span-6 space-y-6"
+            className="lg:col-span-6 space-y-5"
           >
-            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#0e0e1e] via-[#0b0b16] to-[#080812] border border-purple-500/20 shadow-xl space-y-5">
-              <div className="flex items-center gap-3 pb-4 border-b border-purple-500/15">
+            <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#0c0c1a] via-[#0e0e20] to-[#0a0a14] border border-purple-500/15 shadow-xl space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-purple-500/10">
                 <div className="w-10 h-10 rounded-xl bg-purple-950/50 border border-purple-500/30 flex items-center justify-center font-bold text-sm text-purple-200">
                   SG
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-white">{profileData.name}</h3>
+                  <h3 className="font-bold text-base sm:text-lg text-white">{profileData.name}</h3>
                   <p className="text-xs font-mono text-purple-400">
-                    MCA Scholar &bull; Full-Stack &bull; Data Analytics
+                    MCA Scholar &bull; Software Developer &bull; Data Analytics
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+              <div className="space-y-3.5 text-slate-300 text-sm leading-relaxed">
                 <p>
                   I am <strong className="text-white font-semibold">Sudha Gowda</strong>, an MCA student at{' '}
                   <span className="text-purple-300 font-medium">PES University, Bangalore</span> (expected 2027) and a
                   BCA graduate from{' '}
                   <span className="text-purple-300 font-medium">
-                    Government First Grade College, Honnavar (Karnatak University)
+                    Government First Grade College, Honnavar
                   </span>{' '}
                   with an <span className="text-purple-300 font-semibold">8.8 CGPA distinction</span>.
                 </p>
 
                 <p>
-                  My core passion is centered on <strong className="text-white">Software Development</strong>,{' '}
-                  <strong className="text-white">Full-Stack Web Development</strong>, and{' '}
-                  <strong className="text-white">Data Analytics</strong>. I bridge algorithmic engineering with polished
-                  user interfaces, leveraging hands-on expertise in{' '}
-                  <span className="text-purple-200 font-mono text-xs px-1.5 py-0.5 rounded bg-purple-950/60 border border-purple-500/20">
-                    Python
-                  </span>
-                  ,{' '}
-                  <span className="text-purple-200 font-mono text-xs px-1.5 py-0.5 rounded bg-purple-950/60 border border-purple-500/20">
-                    JavaScript
-                  </span>
-                  ,{' '}
-                  <span className="text-purple-200 font-mono text-xs px-1.5 py-0.5 rounded bg-purple-950/60 border border-purple-500/20">
-                    React.js
-                  </span>
-                  ,{' '}
-                  <span className="text-purple-200 font-mono text-xs px-1.5 py-0.5 rounded bg-purple-950/60 border border-purple-500/20">
-                    FastAPI
-                  </span>
-                  ,{' '}
-                  <span className="text-purple-200 font-mono text-xs px-1.5 py-0.5 rounded bg-purple-950/60 border border-purple-500/20">
-                    SQL
-                  </span>
-                  , and machine learning architectures.
+                  My work focuses on bridging <strong className="text-white">Software Development</strong>,{' '}
+                  <strong className="text-white">Full-Stack Web Engineering</strong>, and{' '}
+                  <strong className="text-white">Data Analytics</strong>. I engineer end-to-end applications with clean architectures, responsive frontends, high-performance Python services, and analytical intelligence.
                 </p>
 
                 <p>
-                  I have built end-to-end production-caliber software including:
+                  Currently, I am expanding my industry impact as a{' '}
+                  <span className="text-purple-300 font-medium">Virtual Intern in Data Analysis &amp; AI/ML at 1M1B</span>{' '}
+                  (integrated with Microsoft, supported by Govt. of Karnataka &amp; MeitY Startup Hub), solving sustainability challenges using data-driven intelligence.
                 </p>
+              </div>
 
-                <ul className="space-y-2 text-xs sm:text-sm text-slate-300 pl-1">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
-                    <span>
-                      <strong className="text-white">SignFlow:</strong> Real-time Indian Sign Language recognition and
-                      speech synthesis (<span className="text-purple-300 font-mono">&lt; 25 ms</span> latency, 92.06% accuracy).
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
-                    <span>
-                      <strong className="text-white">BuildHer:</strong> AI-powered women entrepreneurship ecosystem built
-                      for the ACM-W State-Level Hackathon with UPI payments and safety center.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
-                    <span>
-                      <strong className="text-white">Debt Sustainability Classifier:</strong> Supervised machine learning
-                      pipeline analyzing financial indicators and macroeconomic risk factors.
-                    </span>
-                  </li>
-                </ul>
-
-                <p>
-                  Currently, I am expanding my industry impact through the{' '}
-                  <span className="text-purple-300 font-medium">1M1B virtual internship in Data Analysis and AI/ML</span>{' '}
-                  (integrated with Microsoft, supported by Govt. of Karnataka &amp; MeitY Startup Hub), applying data
-                  analytics to sustainability challenges in a simulated enterprise environment.
-                </p>
+              {/* Status Tags */}
+              <div className="flex flex-wrap items-center gap-2 pt-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-purple-950/60 border border-purple-500/25 text-purple-300">
+                  <MapPin className="w-3 h-3 text-purple-400" />
+                  Bengaluru, India
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/40 border border-emerald-500/25 text-emerald-300">
+                  <Sparkles className="w-3 h-3 text-emerald-400" />
+                  Open to Opportunities
+                </span>
               </div>
 
               {/* Action Buttons */}
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <a
-                  href="#skills"
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-600 hover:to-indigo-500 transition-all shadow-md"
+                  href="#projects"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-600 hover:to-indigo-500 transition-all shadow-md active:scale-95"
                 >
-                  <span>Explore Technical Skills</span>
+                  <span>View Projects</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
                 <a
                   href={profileData.resumeUrl}
                   download={profileData.resumeFileName || 'Sudha_Gowda_Resume.pdf'}
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-purple-300 bg-[#121226] border border-purple-500/25 hover:border-purple-500/50 hover:bg-[#181832] transition-all"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-purple-300 bg-[#121226] border border-purple-500/25 hover:border-purple-500/50 hover:bg-[#181832] transition-all active:scale-95"
                 >
                   <Download className="w-3.5 h-3.5 text-purple-400" />
                   <span>Download Resume</span>
@@ -206,63 +130,97 @@ export const AboutSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: 4 Focus Area Cards */}
+          {/* Right Column: Sleek developer.ts Code Card (Inspired by modern portfolios) */}
           <motion.div
-            variants={staggerContainer}
+            variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="lg:col-span-6"
           >
-            {focusAreas.map((area) => (
-              <motion.div
-                key={area.title}
-                variants={fadeInUp}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-                className="p-5 rounded-2xl bg-[#0c0c19] border border-purple-500/15 hover:border-purple-500/40 hover:bg-[#111124] transition-all duration-300 shadow-lg flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-purple-950/40 border border-purple-500/20 flex items-center justify-center mb-3.5 group-hover:bg-purple-900/40 transition-colors">
-                    {area.icon}
-                  </div>
-                  <h4 className="font-bold text-sm sm:text-base text-white mb-2 group-hover:text-purple-200 transition-colors">
-                    {area.title}
-                  </h4>
-                  <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                    {area.description}
-                  </p>
+            <div className="rounded-3xl bg-[#080812] border border-purple-500/20 shadow-2xl overflow-hidden">
+              {/* Window Header */}
+              <div className="px-5 py-3.5 bg-[#0f0f20] border-b border-purple-500/15 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
                 </div>
+                <div className="flex items-center gap-1.5 text-xs font-mono text-purple-300/80">
+                  <Terminal className="w-3.5 h-3.5 text-purple-400" />
+                  <span>developer.ts</span>
+                </div>
+                <div className="text-[10px] font-mono text-slate-500">TypeScript</div>
+              </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-purple-500/10">
-                  {area.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#16162a] text-purple-300 border border-purple-500/10"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+              {/* Code Content */}
+              <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed overflow-x-auto text-slate-300 space-y-1">
+                <p>
+                  <span className="text-purple-400 font-bold">const</span>{' '}
+                  <span className="text-indigo-300">developer</span> = &#123;
+                </p>
+                <p className="pl-4">
+                  <span className="text-purple-300">name</span>:{' '}
+                  <span className="text-emerald-300">&quot;Sudha Gowda&quot;</span>,
+                </p>
+                <p className="pl-4">
+                  <span className="text-purple-300">education</span>: &#123;
+                </p>
+                <p className="pl-8">
+                  <span className="text-purple-300">degree</span>:{' '}
+                  <span className="text-emerald-300">&quot;MCA (2025–2027)&quot;</span>,
+                </p>
+                <p className="pl-8">
+                  <span className="text-purple-300">university</span>:{' '}
+                  <span className="text-emerald-300">&quot;PES University, Bangalore&quot;</span>,
+                </p>
+                <p className="pl-8">
+                  <span className="text-purple-300">undergraduate</span>:{' '}
+                  <span className="text-emerald-300">&quot;BCA · 8.8 CGPA Distinction&quot;</span>,
+                </p>
+                <p className="pl-4">&#125;,</p>
+                <p className="pl-4">
+                  <span className="text-purple-300">roles</span>: [
+                </p>
+                <p className="pl-8 text-emerald-300">
+                  &quot;Software Developer&quot;, &quot;Full-Stack Web&quot;, &quot;Data Analytics&quot;,
+                </p>
+                <p className="pl-4">],</p>
+                <p className="pl-4">
+                  <span className="text-purple-300">primaryStack</span>: [
+                </p>
+                <p className="pl-8 text-emerald-300">
+                  &quot;Python&quot;, &quot;TypeScript&quot;, &quot;FastAPI&quot;, &quot;React.js&quot;, &quot;Next.js&quot;, &quot;SQL&quot;, &quot;Excel&quot;, &quot;Power BI&quot;,
+                </p>
+                <p className="pl-4">],</p>
+                <p className="pl-4">
+                  <span className="text-purple-300">internship</span>:{' '}
+                  <span className="text-emerald-300">&quot;1M1B · Data Analysis &amp; AI/ML (with Microsoft)&quot;</span>,
+                </p>
+                <p className="pl-4">
+                  <span className="text-purple-300">availableForHire</span>:{' '}
+                  <span className="text-amber-400">true</span>,
+                </p>
+                <p>&#125;;</p>
+              </div>
+            </div>
           </motion.div>
         </div>
 
-        {/* Stats & Credibility Ribbon */}
+        {/* 4 Stats Metrics Ribbon */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-6 rounded-3xl bg-gradient-to-r from-[#0d0d1e] via-[#101026] to-[#0d0d1e] border border-purple-500/20 shadow-xl"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-[#0c0c1a] via-[#101026] to-[#0c0c1a] border border-purple-500/15 shadow-xl"
         >
           {stats.map((s) => (
             <div
               key={s.label}
-              className="p-4 rounded-2xl bg-[#080812]/80 border border-purple-500/10 text-center space-y-1"
+              className="p-4 rounded-2xl bg-[#080812]/90 border border-purple-500/10 text-center space-y-1"
             >
-              <span className="text-xs font-mono text-purple-400 uppercase tracking-wider block">
+              <span className="text-[11px] font-mono text-purple-400 uppercase tracking-wider block">
                 {s.label}
               </span>
               <p className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">

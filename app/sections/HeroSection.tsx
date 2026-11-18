@@ -97,6 +97,22 @@ export const HeroSection: React.FC = () => {
                 <span>View Resume</span>
               </a>
             </div>
+
+            {/* Quick Metrics Bar (Inspired by modern developer portfolios) */}
+            <div className="pt-3 grid grid-cols-3 gap-2.5 sm:gap-3 max-w-lg">
+              <div className="p-3 rounded-2xl bg-[#0c0c1a]/80 border border-purple-500/15 text-center">
+                <div className="text-base sm:text-lg font-bold text-white">3+</div>
+                <div className="text-[10px] sm:text-[11px] text-purple-300/80 font-mono">Projects</div>
+              </div>
+              <div className="p-3 rounded-2xl bg-[#0c0c1a]/80 border border-purple-500/15 text-center">
+                <div className="text-base sm:text-lg font-bold text-white">MCA &apos;27</div>
+                <div className="text-[10px] sm:text-[11px] text-purple-300/80 font-mono">PES University</div>
+              </div>
+              <div className="p-3 rounded-2xl bg-[#0c0c1a]/80 border border-purple-500/15 text-center">
+                <div className="text-base sm:text-lg font-bold text-white">1M1B</div>
+                <div className="text-[10px] sm:text-[11px] text-purple-300/80 font-mono">Virtual Intern</div>
+              </div>
+            </div>
           </motion.div>
 
           {/* Right Column: Lottie Female Developer Character */}
