@@ -7,3 +7,4 @@ export { SkillCard } from './SkillCard';
 export { LottieCharacter } from './LottieCharacter';
 export { GithubIcon, LinkedinIcon } from './Icons';
 export { ProjectVisual } from './ProjectVisual';
+export { Preloader } from './Preloader';
