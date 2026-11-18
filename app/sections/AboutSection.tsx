@@ -23,24 +23,24 @@ import { fadeInUp, staggerContainer } from '@/app/lib/animation';
 const focusAreas = [
   {
     icon: <Code2 className="w-5 h-5 text-purple-400" />,
-    title: 'Full-Stack & Mobile Engineering',
+    title: 'Full-Stack Engineering',
     description:
-      'Engineering performant web and mobile applications using Python, JavaScript, React Native (Expo), Next.js, and FastAPI with clean, maintainable architecture.',
-    tags: ['React Native', 'FastAPI', 'Next.js', 'TypeScript', 'SQL'],
+      'Engineering performant web applications and services using Python, JavaScript, TypeScript, Next.js, and FastAPI with clean, maintainable architecture.',
+    tags: ['React.js', 'FastAPI', 'Next.js', 'TypeScript', 'SQL'],
   },
   {
     icon: <BrainCircuit className="w-5 h-5 text-indigo-400" />,
     title: 'Machine Learning & AI',
     description:
-      'Hands-on training and deployment of deep neural networks (BiLSTM in PyTorch) and real-time computer vision (MediaPipe skeletal tracking) for accessibility.',
-    tags: ['PyTorch', 'MediaPipe', 'BiLSTM', 'Scikit-learn', 'Inference Optimization'],
+      'Hands-on training and deployment of gesture recognition pipelines and real-time computer vision (MediaPipe skeletal tracking) for accessibility.',
+    tags: ['MediaPipe', 'Scikit-learn', 'Predictive Modeling', 'Inference Optimization'],
   },
   {
     icon: <BarChart3 className="w-5 h-5 text-violet-400" />,
     title: 'Data Analytics & Visualization',
     description:
-      'Transforming complex datasets into actionable insights using Advanced Excel, Power BI, Tableau, Pandas, NumPy, and structured SQL database models.',
-    tags: ['Power BI', 'Tableau', 'Excel', 'Pandas', 'EDA'],
+      'Transforming complex datasets into actionable insights using Excel, Power BI, Tableau, Pandas, and structured SQL database models.',
+    tags: ['Power BI', 'Tableau', 'Excel', 'Pandas', 'SQL'],
   },
   {
     icon: <Briefcase className="w-5 h-5 text-purple-300" />,
@@ -136,7 +136,7 @@ export const AboutSection: React.FC = () => {
                   </span>
                   ,{' '}
                   <span className="text-purple-200 font-mono text-xs px-1.5 py-0.5 rounded bg-purple-950/60 border border-purple-500/20">
-                    React Native
+                    React.js
                   </span>
                   ,{' '}
                   <span className="text-purple-200 font-mono text-xs px-1.5 py-0.5 rounded bg-purple-950/60 border border-purple-500/20">
