@@ -1,87 +1,102 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import React, { useEffect, useState, useRef } from 'react';
+
+const NAME = 'Sudha Gowda';
 
 export const Preloader: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  const [phase, setPhase] = useState<'idle' | 'letters' | 'hold' | 'exit' | 'done'>('idle');
+  const hasRun = useRef(false);
 
   useEffect(() => {
-    // Show branded intro on initial load, then smoothly exit
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1100);
+    if (hasRun.current) return;
+    hasRun.current = true;
 
-    return () => clearTimeout(timer);
+    // Skip if already seen this session or user prefers reduced motion
+    let played = false;
+    try {
+      played = sessionStorage.getItem('sg-intro') === '1';
+    } catch (_) {}
+
+    const prefersReduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (played || prefersReduced) {
+      setPhase('done');
+      return;
+    }
+
+    // Phase timeline
+    // 0ms   → show letters (animate in)
+    // 900ms → hold
+    // 1600ms → exit fade
+    // 2200ms → done (unmount)
+
+    setPhase('letters');
+
+    const t1 = setTimeout(() => setPhase('hold'), 900);
+    const t2 = setTimeout(() => setPhase('exit'), 1600);
+    const t3 = setTimeout(() => {
+      setPhase('done');
+      try { sessionStorage.setItem('sg-intro', '1'); } catch (_) {}
+    }, 2200);
+
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
+  if (phase === 'done') return null;
+
   return (
-    <AnimatePresence>
-      {loading && (
-        <motion.div
-          key="preloader"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#080810] text-white select-none"
-        >
-          {/* Ambient background glows */}
-          <div className="absolute w-[360px] h-[360px] bg-purple-700/15 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-
-          {/* Logo / Monogram */}
-          <motion.div
-            initial={{ scale: 0.85, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="relative mb-5"
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#080810',
+        transition: phase === 'exit' ? 'opacity 0.6s cubic-bezier(0.22,1,0.36,1)' : 'none',
+        opacity: phase === 'exit' ? 0 : 1,
+        pointerEvents: phase === 'exit' ? 'none' : 'all',
+      }}
+    >
+      <h1
+        style={{
+          fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+          fontWeight: 700,
+          fontSize: 'clamp(2rem, 6vw, 3.5rem)',
+          letterSpacing: '0.08em',
+          color: '#f1f0ff',
+          display: 'flex',
+          gap: 0,
+          userSelect: 'none',
+        }}
+      >
+        {NAME.split('').map((char, i) => (
+          <span
+            key={i}
+            style={{
+              display: 'inline-block',
+              opacity: phase === 'letters' || phase === 'hold' ? 1 : 0,
+              transform:
+                phase === 'letters' || phase === 'hold'
+                  ? 'translateY(0)'
+                  : 'translateY(-8px)',
+              transition: `opacity 0.4s ease, transform 0.4s ease`,
+              transitionDelay: char === ' '
+                ? '0ms'
+                : `${i * 45}ms`,
+              // Space character
+              width: char === ' ' ? '0.4em' : undefined,
+            }}
           >
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-purple-700 via-indigo-600 to-purple-400 p-[1.5px] shadow-2xl shadow-purple-900/60">
-              <div className="w-full h-full bg-[#0d0d1a] rounded-[14px] flex items-center justify-center">
-                <span className="font-extrabold text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-indigo-200">
-                  SG
-                </span>
-              </div>
-            </div>
-            {/* Subtle pulse ring */}
-            <div className="absolute -inset-1 rounded-2xl bg-purple-500/20 blur-sm -z-10 animate-ping opacity-30" />
-          </motion.div>
-
-          {/* Name & Title */}
-          <motion.div
-            initial={{ y: 8, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-center space-y-1 mb-7"
-          >
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-              Sudha Gowda
-            </h1>
-            <p className="text-[11px] font-mono text-purple-300/80 tracking-widest uppercase flex items-center justify-center gap-1.5">
-              <Sparkles className="w-3 h-3 text-purple-400" />
-              <span>Software Developer</span>
-            </p>
-          </motion.div>
-
-          {/* Sleek Animated Progress Bar */}
-          <motion.div
-            initial={{ opacity: 0, width: 0 }}
-            animate={{ opacity: 1, width: 130 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            className="h-[2px] bg-purple-950/60 rounded-full overflow-hidden relative"
-          >
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: '100%' }}
-              transition={{
-                repeat: Infinity,
-                duration: 0.9,
-                ease: 'easeInOut',
-              }}
-              className="w-1/2 h-full bg-gradient-to-r from-transparent via-purple-400 to-transparent"
-            />
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </h1>
+    </div>
   );
 };
