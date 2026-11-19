@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ArrowUp, Sparkles, Heart } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { profileData } from '@/app/data/profile';
 import { navLinks } from '@/app/data/navigation';
@@ -18,97 +18,64 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-purple-500/10 bg-[#06060c] text-slate-400 py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Col 1: Bio / Branding */}
-          <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-500 flex items-center justify-center font-bold text-xs text-white shadow-md shadow-purple-950/50">
+    <footer className="border-t border-[#1f1f1f] bg-[#0a0a0a] text-[#737373] py-12">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 border-b border-[#1f1f1f]">
+          <div>
+            <div className="flex items-center gap-2 text-[#f5f5f5] font-semibold">
+              <div className="w-6 h-6 rounded bg-[#161616] border border-[#222] flex items-center justify-center text-[10px] font-bold">
                 SG
               </div>
-              <span className="text-xl font-bold text-white tracking-tight">
-                {profileData.name}
-              </span>
+              <span>{profileData.name}</span>
             </div>
-            <p className="text-sm text-slate-400 max-w-md leading-relaxed">
-              {profileData.tagline}
-            </p>
-            <div className="flex items-center gap-2 text-xs text-purple-300/90 font-mono">
-              <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-              <span>MCA Scholar &bull; Full-Stack &bull; Data Analytics</span>
-            </div>
-            <p className="text-xs text-slate-400/80 leading-relaxed max-w-md pt-1">
-              Thank you for reviewing my portfolio. Open for software development, full-stack engineering, and data analytics opportunities.
+            <p className="text-xs text-[#737373] mt-1 font-mono">
+              Software Developer &bull; PES University MCA &apos;27
             </p>
           </div>
 
-          {/* Col 2: Navigation Links */}
-          <div>
-            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider mb-4">
-              Quick Navigation
-            </h4>
-            <ul className="space-y-2 text-sm">
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="hover:text-purple-300 transition-colors duration-200"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          <div className="flex flex-wrap items-center gap-6 text-xs font-mono">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="hover:text-[#f5f5f5] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
-          {/* Col 3: Social & Verified Professional Networks */}
-          <div>
-            <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider mb-4">
-              Professional Links
-            </h4>
-            <div className="flex items-center gap-3">
-              <a
-                href={profileData.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-purple-950/30 border border-purple-500/20 flex items-center justify-center text-slate-300 hover:text-white hover:border-purple-500/50 hover:bg-purple-900/40 transition-all duration-200 shadow-sm"
-                aria-label="GitHub Profile"
-              >
-                <GithubIcon className="w-4 h-4 text-purple-400" />
-              </a>
-
-              <a
-                href={profileData.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-purple-950/30 border border-purple-500/20 flex items-center justify-center text-slate-300 hover:text-white hover:border-purple-500/50 hover:bg-purple-900/40 transition-all duration-200 shadow-sm"
-                aria-label="LinkedIn Profile"
-              >
-                <LinkedinIcon className="w-4 h-4 text-purple-400" />
-              </a>
-            </div>
-            <p className="text-xs text-slate-500 mt-3 font-mono">
-              Bangalore, Karnataka, India
-            </p>
+          <div className="flex items-center gap-3">
+            <a
+              href={profileData.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg border border-[#1f1f1f] hover:border-[#333] hover:text-[#f5f5f5] transition-all"
+              aria-label="GitHub Profile"
+            >
+              <GithubIcon className="w-4 h-4" />
+            </a>
+            <a
+              href={profileData.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg border border-[#1f1f1f] hover:border-[#333] hover:text-[#f5f5f5] transition-all"
+              aria-label="LinkedIn Profile"
+            >
+              <LinkedinIcon className="w-4 h-4" />
+            </a>
           </div>
         </div>
 
-        {/* Bottom Bar with Dynamic Year and Closing Message */}
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>
-            &copy; {currentYear} {profileData.name}. All rights reserved.
-          </p>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 text-slate-400 hover:text-purple-300 transition-colors p-1"
-              aria-label="Scroll back to top"
-            >
-              <span>Back to top</span>
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
-          </div>
+        <div className="pt-6 flex items-center justify-between text-xs font-mono text-[#555]">
+          <p>&copy; {currentYear} {profileData.name}. All rights reserved.</p>
+          <button
+            onClick={scrollToTop}
+            className="inline-flex items-center gap-1 hover:text-[#f5f5f5] transition-colors"
+          >
+            <span>Top</span>
+            <ArrowUp className="w-3.5 h-3.5" />
+          </button>
         </div>
       </div>
     </footer>

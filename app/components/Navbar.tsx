@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, FileText, Sparkles, Download, Eye } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { navLinks } from '@/app/data/navigation';
 import { profileData } from '@/app/data/profile';
 import { useScrollPosition } from '@/app/hooks/useScrollPosition';
@@ -14,80 +14,61 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         isScrolled
-          ? 'bg-[#080810]/85 backdrop-blur-md border-b border-purple-500/10 shadow-lg shadow-black/40 py-3.5'
+          ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#1f1f1f] py-3.5'
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
           <a
             href="#hero"
-            className="group flex items-center gap-2.5 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-lg p-1"
+            className="flex items-center gap-2.5 text-[#f5f5f5] focus:outline-none"
             aria-label="Sudha Gowda - Back to top"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-700 via-indigo-600 to-purple-400 p-[1px] shadow-sm shadow-purple-900/50">
-              <div className="w-full h-full bg-[#0d0d1a] rounded-[11px] flex items-center justify-center group-hover:bg-transparent transition-colors duration-300">
-                <span className="font-bold text-sm tracking-wider text-purple-200">SG</span>
-              </div>
+            <div className="w-8 h-8 rounded-lg bg-[#141414] border border-[#222] flex items-center justify-center font-bold text-xs text-[#f5f5f5]">
+              SG
             </div>
-            <div className="flex flex-col">
-              <span className="font-semibold text-sm sm:text-base tracking-tight text-white group-hover:text-purple-300 transition-colors">
-                {profileData.name}
-              </span>
-              <span className="text-[10px] text-purple-400/80 tracking-widest uppercase flex items-center gap-1 font-mono">
-                <Sparkles className="w-2.5 h-2.5" /> Portfolio
-              </span>
-            </div>
+            <span className="font-semibold text-sm sm:text-base tracking-tight text-[#f5f5f5]">
+              {profileData.name}
+            </span>
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-4 lg:gap-7">
+          <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-xs lg:text-sm font-medium text-slate-300 hover:text-purple-300 transition-colors duration-200 relative group py-1"
+                className="text-xs font-mono uppercase tracking-wider text-[#737373] hover:text-[#f5f5f5] transition-colors py-1"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-500 to-indigo-400 rounded-full transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
 
           {/* Action Button & Mobile Toggle */}
-          <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="flex items-center gap-3">
             <a
               href={profileData.resumeUrl}
               download={profileData.resumeFileName || 'Sudha_Gowda_Resume.pdf'}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-600 hover:to-indigo-500 transition-all duration-200 shadow-md shadow-purple-950/50 hover:shadow-purple-700/30 active:scale-95"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#f5f5f5] border border-[#1f1f1f] hover:border-[#333] hover:bg-[#111] transition-all"
               title="Download Resume PDF"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Resume</span>
             </a>
 
-            <a
-              href={profileData.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/30 transition-all duration-200 active:scale-95"
-              title="View Resume in New Tab"
-            >
-              <Eye className="w-3.5 h-3.5 text-purple-400" />
-              <span>Preview</span>
-            </a>
-
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="md:hidden p-2 rounded-lg text-[#737373] hover:text-[#f5f5f5] transition-colors"
               aria-label="Toggle navigation menu"
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -100,8 +81,8 @@ export const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="md:hidden bg-[#0c0c17]/95 backdrop-blur-xl border-b border-purple-500/15 px-4 pt-3 pb-6 shadow-2xl"
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-[#0d0d0d] border-b border-[#1f1f1f] px-6 pt-3 pb-6"
           >
             <div className="flex flex-col gap-3">
               {navLinks.map((link) => (
@@ -109,30 +90,20 @@ export const Navbar: React.FC = () => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-purple-300 hover:bg-purple-950/30 transition-all"
+                  className="py-2 text-sm font-medium text-[#737373] hover:text-[#f5f5f5] transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="pt-2 border-t border-purple-900/30 flex flex-col gap-2.5">
+              <div className="pt-2 border-t border-[#1f1f1f]">
                 <a
                   href={profileData.resumeUrl}
                   download={profileData.resumeFileName || 'Sudha_Gowda_Resume.pdf'}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-600 hover:to-indigo-500 shadow-md shadow-purple-950/40"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-xs font-semibold text-white bg-indigo-600"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-3.5 h-3.5" />
                   <span>Download Resume</span>
-                </a>
-                <a
-                  href={profileData.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10"
-                >
-                  <Eye className="w-4 h-4 text-purple-400" />
-                  <span>View Resume (Preview)</span>
                 </a>
               </div>
             </div>

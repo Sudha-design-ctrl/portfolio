@@ -7,7 +7,6 @@ export const metadata: Metadata = {
     'Personal portfolio of Sudha Gowda — Software Developer, Full-Stack Web Developer, and Data Analytics Enthusiast.',
   keywords: [
     'Sudha Gowda',
-    'Sudha Nagappa Gowda',
     'Software Developer',
     'Full-Stack Developer',
     'Data Analytics',
@@ -24,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className="min-h-screen bg-[#080810] text-[#f1f0ff] antialiased selection:bg-purple-600/30 selection:text-purple-200">
+      <body className="min-h-screen bg-[#0a0a0a] text-[#f5f5f5] antialiased selection:bg-indigo-600/30 selection:text-indigo-200">
         {children}
       </body>
     </html>
